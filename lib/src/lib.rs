@@ -1,7 +1,7 @@
 use rand::seq::SliceRandom;
 use std::collections::HashMap;
 use std::io;
-use std::io::prelude::*;
+use std::io::prelude::Write;
 
 struct Cipher<'a> {
 	map1: &'a str,
@@ -199,7 +199,7 @@ impl User {
 		}
 		data = data.trim().to_string();
 
-		let trans = cipher.decode(&data, true);
+		let trans = cipher.decode(&data, private);
 		if private {
 			write!(
 				&mut file.unwrap(),
